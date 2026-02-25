@@ -37,8 +37,7 @@ echo:
     int $0x10
     jmp echo
 message:
-    .ascii "hi hi\r\n"
-    .byte 0
+    .asciz "halo bios\r\n"
 
 .org 510
 .word 0xaa55
