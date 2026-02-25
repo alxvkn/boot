@@ -12,6 +12,6 @@ clean:
 	$(RM) *.o $(BIN)
 
 run: $(BIN)
-	qemu-system-x86_64 $(BIN)
+	qemu-system-x86_64 $(BIN) -full-screen
 
 .PHONY: run clean

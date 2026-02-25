@@ -1,5 +1,4 @@
 .code16gcc
-# .org 0x7c00
 .text
 .globl _start
 
@@ -11,10 +10,14 @@ _start:
     mov %ax, %ss
     mov $0x7c00, %sp
 
+    # mov $0, %ah
+    # mov $0x10, %ch
+    # int $0x10
+
     mov $message, %si
     call print_string
 
-    jmp .
+    jmp echo
 print_string:
     mov $0x00, %bx
     mov $0x0e, %ah
@@ -27,7 +30,12 @@ print_char:
     jmp print_char
 print_done:
     ret
-
+echo:
+    mov $0, %ah
+    int $0x16
+    mov $0x0e, %ah
+    int $0x10
+    jmp echo
 message:
     .ascii "hi hi\r\n"
     .byte 0
